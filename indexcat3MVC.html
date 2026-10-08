@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>CATCLICKER</h1>
+    <ul id="llista"></ul>
+    <img id="imgGat" src="" alt="">
+    <h3 id="nomActual"></h3>
+    <h3 id="contActual"></h3>
+</body>
+<script>
+
+    let data = {
+        catActive: 0,
+        ncats: 4,
+        gatos: [
+            { name: "Michifu", content: "lorem", image: "img/catclicker1.jpg", nclicks: 0 },
+            { name: "Minino", content: "lorem2", image: "img/catclicker2.jpg", nclicks: 0 },
+            { name: "Garfield", content: "lorem", image: "img/catclicker3.jpg", nclicks: 0 },
+            { name: "Garfield", content: "lorem", image: "img/catclicker4.jpg", nclicks: 0 }
+        ]
+    };
+
+    let model = {
+        init: function () {
+            //AQUI NO HAY QUE HACER
+        },
+        getGatos: function () {
+            return data.gatos;
+        },
+        getGatoActual: function () {
+            return data.gatos[data.catActive];
+        },
+        canviGat: function (id) {
+            data.catActive = id;
+        },
+        clickGato: function () {
+            data.gatos[data.catActive].nclicks++;
+        }
+    };
+
+    let controller = {
+        canviGat: function (id) {
+            //Actualitzo les dades
+            model.canviGat(id);
+            //Repinto
+            view.renderGatoActual();
+        },
+        clickGato: function () {
+            //actualitzo les dades
+            model.clickGato();
+            //repinto
+            view.renderGatoActual();
+        },
+        getGatos: function () {
+            return model.getGatos();
+        },
+        getGatoActual: function () {
+            return model.getGatoActual();
+        },
+        init: function () {
+            model.init();
+            view.init();
+        }
+    };
+
+    let view = {
+        init: function () {
+            view.renderLlista();
+            view.renderGatoActual();
+
+            //AFEGEIXO UN LISTENER AL GAT
+            document.getElementById("imgGat").addEventListener("click", function () {
+                controller.clickGato();
+            })
+
+        },
+        renderLlista: function () {
+            let datos = controller.getGatos();
+            htmlStr = ""
+            datos.forEach((element, index) => {
+                htmlStr += `<li id='${index}'>${element.name}</li>`
+            });
+            document.getElementById("llista").innerHTML = htmlStr;
+
+            document.getElementById("llista").addEventListener("click", function (e) {
+                console.log("has apretat al gat en la llista" + e.target.id)
+                controller.canviGat(e.target.id)
+            })
+        },
+        renderGatoActual: function () {
+            let datosGatoActual = controller.getGatoActual();
+            document.getElementById("imgGat").src = datosGatoActual.image
+            document.getElementById("nomActual").innerHTML = datosGatoActual.name;
+            document.getElementById("contActual").innerHTML = datosGatoActual.nclicks;
+        },
+
+
+    };
+
+    controller.init();
+
+</script>
+
+</html>
