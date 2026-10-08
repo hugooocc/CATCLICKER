@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <title>Document</title>
+</head>
+
+<style>
+    .catclicker1 {
+        width: 250px;
+    }
+
+    .catclicker2 {
+        width: 250px;
+    }
+</style>
+
+<body>
+    <h1>CATCLICKER</h1>
+    <br>
+    <div>
+        <h2>CATCLICKER 1:</h2>
+        <img id="catclicker1" class="catclicker1" src="img\catclicker1.jpg" alt="catclicker1">
+    </div>
+    <div class="clickcounter1">
+        Clics: <span id="clickcounter1">0</span>
+    </div>
+
+    <div>
+        <h2>CATCLICKER 2:</h2>
+        <img id="catclicker2" class="catclicker2" src="img\catclicker2.jpg" alt="catclicker2">
+    </div>
+
+    <div class="clickcounter2">
+        Clics: <span id="clickcounter2">0</span>
+    </div>
+
+</body>
+
+<script>
+    // 1. Estado en memoria para cada gato
+    const cats = {
+        cat1: { clicks: 0 },
+        cat2: { clicks: 0 }
+    };
+
+    // 2. Referencias al DOM del Gato 1
+    const imgCat1 = document.getElementById('catclicker1');
+    const countDisplay1 = document.getElementById('clickcounter1');
+
+    imgCat1.addEventListener('click', () => {
+        cats.cat1.clicks++;
+        countDisplay1.textContent = cats.cat1.clicks;
+    });
+
+    // 3. Referencias al DOM del Gato 2
+    const imgCat2 = document.getElementById('catclicker2');
+    const countDisplay2 = document.getElementById('clickcounter2');
+
+    imgCat2.addEventListener('click', () => {
+        cats.cat2.clicks++;
+        countDisplay2.textContent = cats.cat2.clicks;
+    });
+</script>
+
+</html>

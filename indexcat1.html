@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <title>Document</title>
+</head>
+
+<style>
+    .catclicker1 {
+        width: 250px;
+    }
+</style>
+
+<body>
+    <h1>CATCLICKER</h1>
+    <br>
+    <div>
+        <h2>CATCLICKER 1:</h2>
+        <img id="catclicker1" class="catclicker1" src="img\catclicker1.jpg" alt="catclicker1">
+    </div>
+    <div class="clickcounter">
+        Clics: <span id="click-count">0</span>
+    </div>
+
+</body>
+
+<script>
+
+    const catImage = document.getElementById('catclicker1');
+    const clickCount = document.getElementById('click-count');
+
+    let count = 0;
+
+    catImage.addEventListener('click', () => {
+        count++;
+        clickCount.textContent = count;
+    });
+
+</script>
+
+</html>
